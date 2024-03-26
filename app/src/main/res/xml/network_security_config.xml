@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!-- 解决CLEARTEXT communication to “ “ not permitted by netwo
+rk security policy明文通信到“”不允许网络安全策略的问题-->
+
+<network-security-config>
+    <base-config cleartextTrafficPermitted="true"/>
+</network-security-config>
