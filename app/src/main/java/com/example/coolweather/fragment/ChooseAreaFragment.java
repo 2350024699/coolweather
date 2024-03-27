@@ -1,7 +1,9 @@
 package com.example.coolweather.fragment;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,6 +19,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.example.coolweather.R;
+import com.example.coolweather.WeatherActivity;
 import com.example.coolweather.db.City;
 import com.example.coolweather.db.County;
 import com.example.coolweather.db.Province;
@@ -87,6 +90,12 @@ public class ChooseAreaFragment extends Fragment {
                 }else if(currentLevel == LEVEL_CITY){
                     selectedCity = cityList.get(position);
                     queryCounties();
+                }else if(currentLevel == LEVEL_COUNTY){
+                    String weather_id = countyList.get(position).getWeatherId();
+                    Intent intent = new Intent(getActivity(), WeatherActivity.class);
+                    intent.putExtra("weather_id",weather_id);
+                    startActivity(intent);
+                    getActivity().finish();
                 }
             }
         });
@@ -179,6 +188,7 @@ public class ChooseAreaFragment extends Fragment {
             public void onResponse(Call call, Response response) throws IOException {
                 //Toast.makeText(getActivity(), "1213", Toast.LENGTH_SHORT).show();
                 String responseText = response.body().string();
+                //Log.d("GG", responseText.toString());
                 boolean result = false;
                 if("province".equals(type)){
                     result = Utility.handleProvinceResponse(responseText);
