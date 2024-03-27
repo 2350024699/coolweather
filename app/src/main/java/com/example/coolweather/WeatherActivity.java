@@ -112,7 +112,7 @@ public class WeatherActivity extends AppCompatActivity {
         if(bing_pic != null){
             //Log.e("WeatherActivity", bing_pic);
             //输出图片网址
-            Toast.makeText(WeatherActivity.this, bing_pic, Toast.LENGTH_SHORT).show();
+            //Toast.makeText(WeatherActivity.this, bing_pic, Toast.LENGTH_SHORT).show();
             Glide.with(this).load(bing_pic).into(bing_pic_img);
         }else{
             loadBingPic();
